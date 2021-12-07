@@ -73,7 +73,7 @@ end
 
 function createCpuMemoryInfo()
     rpmemory_info = Ref(POrtMemoryInfo(0))
-    @checkStatus @ccall $(ORT.api.CreateCpuMemoryInfo)(OrtArenaAllocator::Cint, OrtMemTypeDefault::Cint, rpmemory_info::Ref{POrtMemoryInfo})::POrtStatus
+    @checkStatus @ccall $(ORT.api.CreateCpuMemoryInfo)(LOR.OrtArenaAllocator::Cint, OrtMemTypeDefault::Cint, rpmemory_info::Ref{POrtMemoryInfo})::POrtStatus
     return rpmemory_info[]
 end
 
