@@ -3,6 +3,7 @@ module OnnxRuntime
 # Easier-to-use wrapper for LibOnnxRuntime
 
 import LibOnnxRuntime as LOR
+import Base.@kwdef
 
 @kwdef mutable struct OrtGlobal
     apibase::OrtApiBase = OrtApiBase(C_NULL, C_NULL)
