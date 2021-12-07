@@ -114,7 +114,7 @@ function run(psession::POrtSession, pinputTensor::POrtValue, inputNames::Vector{
         length(inputNames)::Csize_t,
         outputnameptrs::Ptr{Cchar},
         length(outputNames)::Csize_t,
-        outputTensor::Ref{Ptr{OrtValue}}
+        outputTensor::Ref{POrtValue}
         )::POrtStatus
     return outputTensor
 end
@@ -139,7 +139,7 @@ end
 
 function getTensorMutableData(tensor::POrtValue)
     rpdata = Ref(Ptr{Float32}(0))
-    @checkStatus @ccall $(ORT.api.GetTensorMutableData)(tensor::Ptr{OrtValue}, rpdata::Ref{Ptr{Float32}})::POrtStatus
+    @checkStatus @ccall $(ORT.api.GetTensorMutableData)(tensor::POrtValue, rpdata::Ref{Ptr{Float32}})::POrtStatus
     return rpdata[]
 end
 
