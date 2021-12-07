@@ -43,7 +43,7 @@ const P_ORT_STATUS_OK = POrtStatus(0)
 
 function createEnv(logid::String)
     renv = Ref{POrtEnv}(0)
-    @checkStatus @ccall $(ORT.api.CreateEnv)(ORT_LOGGING_LEVEL_WARNING::Cint, logid::Cstring, renv::Ref{POrtEnv})::POrtStatus
+    @checkStatus @ccall $(ORT.api.CreateEnv)(LOR.ORT_LOGGING_LEVEL_WARNING::Cint, logid::Cstring, renv::Ref{POrtEnv})::POrtStatus
     return renv[]
 end
 
