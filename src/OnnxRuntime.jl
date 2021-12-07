@@ -6,13 +6,13 @@ import LibOnnxRuntime as LOR
 import Base.@kwdef
 
 @kwdef mutable struct OrtGlobal
-    apibase::OrtApiBase = OrtApiBase(C_NULL, C_NULL)
-    api::OrtApi = OrtApi(ntuple(i -> UInt8(0), 1536))
+    apibase::LOR.OrtApiBase = LOR.OrtApiBase(C_NULL, C_NULL)
+    api::LOR.OrtApi = LOR.OrtApi(ntuple(i -> UInt8(0), 1536))
 end
 const ORT = OrtGlobal()
 
 function GetApi()   
-    @ccall $(ort_g.apibase.GetApi)(ORT.ORT_API_VERSION::UInt32)::Ptr{ORT.OrtApi}
+    @ccall $(ORT.apibase.GetApi)(LOR.ORT_API_VERSION::UInt32)::Ptr{LOR.OrtApi}
 end
 
 function __init__()
@@ -21,10 +21,10 @@ function __init__()
 end 
 
 struct OrtStatusError
-    value::OrtStatusPtr
+    value::LOR.OrtStatusPtr
 end
 
-function checkStatus(pstatus::OrtStatusPtr)
+function checkStatus(pstatus::LOR.OrtStatusPtr)
     if (pstatus != P_ORT_STATUS_OK) throw(OrtStatusError(pstatus)) end
 end
 
@@ -32,13 +32,13 @@ macro checkStatus(exp)
     return :(checkStatus($(esc(exp)))) 
 end
 
-const POrtEnv = Ptr{OrtEnv}
-const POrtStatus = Ptr{OrtStatus}
-const POrtValue = Ptr{OrtValue}
-const POrtSessionOptions = Ptr{OrtSessionOptions}
-const POrtSession = Ptr{OrtSession}
-const POrtMemoryInfo = Ptr{OrtMemoryInfo}
-const POrtTensorTypeAndShapeInfo = Ptr{OrtTensorTypeAndShapeInfo}
+const POrtEnv = Ptr{LOR.OrtEnv}
+const POrtStatus = Ptr{LOR.OrtStatus}
+const POrtValue = Ptr{LOR.OrtValue}
+const POrtSessionOptions = Ptr{LOR.OrtSessionOptions}
+const POrtSession = Ptr{LOR.OrtSession}
+const POrtMemoryInfo = Ptr{LOR.OrtMemoryInfo}
+const POrtTensorTypeAndShapeInfo = Ptr{LOR.OrtTensorTypeAndShapeInfo}
 const P_ORT_STATUS_OK = POrtStatus(0)
 
 function createEnv(logid::String)
