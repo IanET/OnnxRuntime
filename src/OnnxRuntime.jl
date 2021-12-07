@@ -88,7 +88,7 @@ function createTensorWithDataAsOrtValue(pmemoryinfo::POrtMemoryInfo, input::Matr
         shape::Ref{Int64},
         shape_len::Csize_t,
         ONNX_TENSOR_ELEMENT_DATA_TYPE_FLOAT::Cint,
-        rinput_tensor::Ref{OrtValue}
+        rinput_tensor::Ref{POrtValue}
         )::POrtStatus
     return rinput_tensor[]
 end
