@@ -1,0 +1,8 @@
+name = "OnnxRuntime"
+uuid = "e3774b51-dd44-442a-b4c9-c6f69307c4d3"
+authors = ["ianet <ianet@users.noreply.github.com>"]
+version = "0.1.0"
+
+[deps]
+CEnum = "fa961155-64e5-5f13-b03f-caf6b980ea82"
+LibOnnxRuntime = "edd8e961-822f-4801-b21c-cac5f01a00fa"
