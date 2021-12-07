@@ -1,7 +1,7 @@
 module OnnxRuntime
 
 # Easier-to-use wrapper for LibOnnxRuntime
-
+using ColorTypes
 import LibOnnxRuntime as LOR
 import Base.@kwdef
 
@@ -88,7 +88,7 @@ function createTensorWithDataAsOrtValue(pmemoryinfo::POrtMemoryInfo, input::Matr
         shape::Ref{Int64},
         shape_len::Csize_t,
         ONNX_TENSOR_ELEMENT_DATA_TYPE_FLOAT::Cint,
-        rinput_tensor::Ref{Ptr{OrtValue}}
+        rinput_tensor::Ref{OrtValue}
         )::POrtStatus
     return rinput_tensor[]
 end
